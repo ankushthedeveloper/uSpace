@@ -5,12 +5,10 @@ import connectToMongo from './db/connectToMongo.js';
 import messageRoutes from './routes/message.routes.js';
 import cookieParser from 'cookie-parser';
 import usersRoutes from './routes/user.routes.js';
+
 const app = express();
 
 dotenv.config();
-// app.get('/',(req,res)=>{
-//     res.send('Hello, world')
-// })
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

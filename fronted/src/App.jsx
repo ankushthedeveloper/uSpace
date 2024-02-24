@@ -5,14 +5,22 @@ import Login from './Pages/Login'
 import SignUp from './Pages/Signup'
 import Home from './Pages/Home'
 import Sidebar from './components/Sidebar/Sidebar'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { useAuthContext } from './context/AuthContext'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const {authUser}=useAuthContext()
   return (
     <>
 <div className='p-4 h-screen flex items-center justify-center'>
-<Home/>
+<Routes>
+  <Route path='/' element={authUser?<Home/>:<Navigate to='/login'/>} />
+  <Route path='/login' element={authUser?<Navigate to='/'/>:<Login/>} />
+  <Route path='/signup' element={authUser?<Navigate to='/'/>:<SignUp/>} />
+</Routes>
+<Toaster/>
 </div>
     </>
   )
