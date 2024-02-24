@@ -11,9 +11,10 @@ const {authUser}=useAuthContext();
 
   const fromMe = (msg.senderId === authUser.id);
   const formattedTime = extractTime(msg.createdAt);
-  const chatclass=fromMe?"chat-end":"chat-start;"
+  const chatclass=fromMe?"chat-end":"chat-start";
   const profilepicture=fromMe?authUser.profilepic:selectedConversation?.profilepic;
-  const bubblebgcolor=fromMe?"bg-blue-500":"";
+  const bubblebgcolor=fromMe?"bg-blue-900":"bg-gray-500";
+  const shakeClass = msg.shouldShake ? "shake" : "";
   return (
     <div className={`chat ${chatclass}`}>
         <div className="chat-image avatar">
@@ -22,7 +23,7 @@ const {authUser}=useAuthContext();
                  />
             </div>
         </div>
-<div className={`chat-bubble text-whie bg-blue-600 ${bubblebgcolor} pb-2`}>{msg.message}</div>
+<div className={`chat-bubble text-white ${bubblebgcolor} ${shakeClass} pb-2`}>{msg.message}</div>
 <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">{formattedTime}</div>
     </div>
   )

@@ -1,6 +1,4 @@
 import { useState } from 'react'
-
-import './App.css'
 import Login from './Pages/Login'
 import SignUp from './Pages/Signup'
 import Home from './Pages/Home'
@@ -8,6 +6,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { useAuthContext } from './context/AuthContext'
+
 
 function App() {
   const [count, setCount] = useState(0)
