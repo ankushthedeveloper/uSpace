@@ -23,9 +23,10 @@ app.use('/api/users',usersRoutes)
 
 app.use(express.static(path.join(__dirname,"/fronted/dist")))
 
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,"/fronted/dist/index.html"))
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
+
 
 server.listen(process.env.PORT,()=>{
     connectToMongo();

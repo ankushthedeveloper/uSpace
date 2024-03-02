@@ -23,7 +23,7 @@ const {authUser}=useAuthContext();
                  />
             </div>
         </div>
-<div className={`chat-bubble text-white ${bubblebgcolor} ${shakeClass} pb-2`}>{msg.message}</div>
+<div className={`chat-bubble text-white ${bubblebgcolor} ${shakeClass} pb-2 flex-auto`}>{msg.message}</div>
 <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">{formattedTime}</div>
     </div>
   )

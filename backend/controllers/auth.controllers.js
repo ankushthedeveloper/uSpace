@@ -1,7 +1,9 @@
 
 import bcrypt from 'bcryptjs';
 import generateTokenAndSetCookie from "../utils/jsontoken.js";
-import User from '../Models/User.js';
+
+import Users from '../Models/Users.js'
+
 
 
 
@@ -10,7 +12,7 @@ export const signupUser= async(req,res)=>{
     const {fullname ,username,password ,confirmpassword ,gender} = req.body;
     if(password!=confirmpassword) res.status(403).json("Password is not matching")
 
-    const user= await User.findOne({username})
+    const user= await Users.findOne({username})
 
     if (user){
         res.status(403).json("Username is already taken")

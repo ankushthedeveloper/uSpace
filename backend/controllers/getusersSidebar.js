@@ -1,9 +1,11 @@
-import User from "../Models/user.js";
+
+
+import Users from '../Models/Users.js'
 
 export const getusersSidebar = async (req, res) => {
   try {
     const loggedInUser = req.user._id;
-    const allUsers = await User.find({ _id: { $ne: loggedInUser } }).select(
+    const allUsers = await Users.find({ _id: { $ne: loggedInUser } }).select(
       "-password"
     );
     res.status(200).json(allUsers);
