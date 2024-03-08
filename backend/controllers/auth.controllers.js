@@ -25,7 +25,7 @@ export const signupUser= async(req,res)=>{
     const boyProfile=`https://avatar.iran.liara.run/public/boy?username=${username}`
     const girlProfile=`https://avatar.iran.liara.run/public/girl?username=${username}`
 
-    const newUser=new User({
+    const newUser=new Users({
         fullname,
         username,
         password:hashedPassword,
@@ -60,7 +60,7 @@ export const loginUser=async (req,res)=>{
 try {
        
     const {username,password}=req.body;
-    const user=await User.findOne({username});
+    const user=await Users.findOne({username});
     const isPasswordCorrect=await bcrypt.compare(password,user?.password ||"");
 
 
