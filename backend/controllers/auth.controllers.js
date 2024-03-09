@@ -1,8 +1,7 @@
 
 import bcrypt from 'bcryptjs';
 import generateTokenAndSetCookie from "../utils/jsontoken.js";
-
-import Users from '../Models/Users.js'
+import Users from '../Users.model.js';
 
 
 
