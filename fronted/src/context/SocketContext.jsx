@@ -17,7 +17,7 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("http://localhost:7000", {
+			const socket = io("https://uspace.onrender.com", {
 				query: {
 					userId: authUser.id,
 				},
