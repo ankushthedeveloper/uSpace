@@ -9,7 +9,6 @@ const generateTokenAndSetCookie=(userId,res)=>{
      maxAge:15*24*60*60*1000,
      htttpOnly:true,
      sameSite:'strict',
-     secure:process.env.Node_env!=='development'
     })
 }
 export default generateTokenAndSetCookie;
