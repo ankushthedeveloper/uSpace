@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 body {
-	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./bg2.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./chatbg2.jpg");
+	background-repeat: repeat;
+	background-size: contain;
+	background-position: left;
 }
 
 /* dark mode looking scrollbar */
