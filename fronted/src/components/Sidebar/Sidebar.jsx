@@ -22,7 +22,7 @@ const Sidebar = () => {
         </button>
       )}
       {
-        showModal&&  (< button style={{background:"teal",
+          showModal&&  (< button style={{background:"teal",
         width:"max-content",
         padding:"10px",
         zIndex:"10",
@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div
         className={`border-r border-slate-500 p-4 flex flex-col opacity-0.2`}
         style={
-          phoneActive
+          ( !selectedConversation||phoneActive)
             ? {
                 background: "orange",
                 width: "20rem",
