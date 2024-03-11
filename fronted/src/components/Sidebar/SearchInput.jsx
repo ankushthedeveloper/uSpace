@@ -28,7 +28,7 @@ const SearchInput = () => {
     } else toast.error("No user found");
   };
   return (
-    <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+    <form className="flex items-center gap-2 " onSubmit={handleSubmit} >
       <input
         type="text"
         placeholder="Search…"
@@ -36,7 +36,7 @@ const SearchInput = () => {
 		value={search}
 		onChange={(e)=>setsearch(e.target.value)}
       />
-      <button type="submit" className="btn btn-circle bg-sky-500 text-white">
+      <button type="submit" className="btn btn-circle bg-sky-500 text-white" >
         <IoSearchSharp className="w-6 h-6 outline-none" />
       </button>
     </form>
