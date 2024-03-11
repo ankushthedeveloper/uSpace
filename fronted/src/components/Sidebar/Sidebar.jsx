@@ -36,7 +36,7 @@ const Sidebar = () => {
         style={
           phoneActive
             ? {
-                background: "red",
+                background: "orange",
                 width: "20rem",
                 height: "100vh",
                 position: "fixed",
