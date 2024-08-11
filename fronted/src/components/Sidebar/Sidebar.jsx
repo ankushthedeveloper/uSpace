@@ -1,28 +1,31 @@
-import { IoChatbox, IoExitOutline, IoOptionsOutline, IoPeople } from "react-icons/io5";
+import { useState } from "react";
+import { BiMenu } from "react-icons/bi";
+import { IoExitOutline } from "react-icons/io5";
+import useConversation from "../../zustand/useConversation";
 import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
-import useConversation from "../../zustand/useConversation";
-import { useState } from "react";
 
 const Sidebar = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const [showModal, setshowModal] = useState(false);
   const [phoneActive, setPhoneActive] = useState(window.innerWidth < 700);
 
+
+  console.log(selectedConversation);
   return (
     <>
       {phoneActive && (
         <button
           id="hamburger"
-          className="bg-white cursor-pointer max-w-fit max-h-fit"
-          onClick={() => setshowModal(true)}
-        >
-          =
+          className="bg-white cursor-pointer max-w-fit max-h-fit xl:hidden"
+          onClick={() => setshowModal((prev)=>!prev)}
+      >
+        <BiMenu/>
         </button>
       )}
       {
-          showModal&&  (< button style={{background:"teal",
+          showModal &&  (< button style={{background:"teal",
         width:"max-content",
         padding:"10px",
         zIndex:"10",
@@ -34,7 +37,7 @@ const Sidebar = () => {
       <div
         className={`border-r border-slate-500 p-4 flex flex-col opacity-0.2`}
         style={
-          ( !selectedConversation||phoneActive)
+          ( !selectedConversation && phoneActive)
             ? {
                 background: "orange",
                 width: "20rem",
@@ -46,9 +49,6 @@ const Sidebar = () => {
             : {}
         }
       >
-        <h5 className=" text-blue-600 text-center pb-1.5 bg-gray-400 rounded-xl mb-2 opacity-0.1">
-          Created by Ankush
-        </h5>
 
         <SearchInput />
         <div className="divider px-3"></div>
