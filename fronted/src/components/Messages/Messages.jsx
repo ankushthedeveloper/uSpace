@@ -1,36 +1,44 @@
-import  { useEffect, useRef } from 'react'
-import Message from './Message'
-import useGetMessages from '../../hooks/useGetMessage'
+import { useEffect, useRef } from 'react';
+import Message from './Message';
+import useGetMessages from '../../hooks/useGetMessage';
 import MessageSkeleton from '../Skeletons/messageSkeleton';
 import useListenMessages from '../../hooks/useListenMessages';
 
-
-
 const Messages = () => {
-  const {messages, loading }=useGetMessages();
+  const { messages, loading } = useGetMessages();
   useListenMessages();
-  const lastMessageRef = useRef();
+  const lastMessageRef = useRef(null);
 
+  // Scroll to the last message when messages update
   useEffect(() => {
-		setTimeout(() => {
-			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-		}, 100);
-	}, [messages]);
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   return (
-    <div className='px-4 flex-1 overflow-auto flex-wrap text-wrap:wrap min-w-96 min-h-96'>
-    
-      {!loading && messages.length>0 &&
-       messages.map(msg =>(
-       <div key={msg._id} 
-       ref={lastMessageRef}>
-         <Message msg={msg} />
-       </div>
-      ))}
-    {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
-			{!loading && messages.length === 0 && (<p className='text-center text-blue-600'>Send a message to start the conversation 😊</p>)}
-    </div>
-  )
-}
+    <div className={`flex-1 overflow-y-auto flex flex-col p-4 min-h-[400px] relative z-1 ${window.innerWidth < 700 ? "max-h-[300px]" : ""}`}
+    >
+      {/* Messages */}
+      {!loading && messages.length > 0 ? (
+        messages.map((msg, idx) => (
+          <div key={msg._id} ref={idx === messages.length - 1 ? lastMessageRef : null}>
+            <Message msg={msg} />
+          </div>
+        ))
+      ) : (
+        // Loading Skeletons
+        loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)
+      )}
 
-export default Messages
+      {/* Empty State */}
+      {!loading && messages.length === 0 && (
+        <div className="flex-1 flex justify-center items-center text-center">
+          <p className="text-blue-600 ">Send a message to start the conversation 😊</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Messages;
